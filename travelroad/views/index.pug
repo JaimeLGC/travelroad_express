@@ -1,11 +1,8 @@
 block content
   h1= "My Travel Bucket List"
-  h2= "Places I'd Like to Visit"
-  ul
-    each place in wished
-      li= place.name
-  h2= "Places I've Already Been To"
-  ul
-    each place in visited
-      li= place.name
-p Powered by Express 
+  p
+    a(href='/visited') Places I'd Like to Visit
+  p 
+    a(href='/wished') Places I've Already Been To
+
+  p!= "&#x1f4ab; Powered by Express RereTest"
