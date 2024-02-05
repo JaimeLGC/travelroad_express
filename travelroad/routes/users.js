@@ -1,17 +1,37 @@
-var express = require('express');
-var router = express.Router();
+const db = require("../config/database");
+let express = require("express");
+let router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* GET home page. */
+router.get("/", async function (req, res, next) {
+  const { rows: wished } = await db.query(
+    "SELECT * FROM places WHERE visited=false"
+  );
+  const { rows: visited } = await db.query(
+    "SELECT * FROM places WHERE visited=true"
+  );
+  res.render("/home", { wished, visited });
 });
 
-router.get('/wished', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/wished", async function (req, res, next) {
+  const { rows: wished } = await db.query(
+    "SELECT * FROM places WHERE visited=false"
+  );
+  const { rows: visited } = await db.query(
+    "SELECT * FROM places WHERE visited=true"
+  );
+  res.render("wished", { wished, visited });
 });
 
-router.get('/visited', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/visited", async function (req, res, next) {
+  const { rows: wished } = await db.query(
+    "SELECT * FROM places WHERE visited=false"
+  );
+  const { rows: visited } = await db.query(
+    "SELECT * FROM places WHERE visited=true"
+  );
+  res.render("/index", { wished, visited });
 });
+
 
 module.exports = router;
